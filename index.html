@@ -715,8 +715,8 @@
                 submitBtn.style.cursor = 'not-allowed';
 
                 try {
-                    // REMPLACE L'URL PAR TON WORKER CLOUDFLARE OU TON API
-                    const response = await fetch('cyberash-contact.ash-advisory.workers.dev', {
+                    // Envoi vers la fonction Netlify
+                    const response = await fetch('/api/contact', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
