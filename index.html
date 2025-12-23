@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AshTech Solutions | Cybersécurité & Développement Web</title>
+    <title>CyberAsh Solutions | Cybersécurité & Développement Web</title>
+    
+    <!-- FAVICON CYBERASH -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%2300d9ff'/><stop offset='50%25' style='stop-color:%230066ff'/><stop offset='100%25' style='stop-color:%238000ff'/></linearGradient></defs><circle cx='32' cy='32' r='30' fill='%230a0e27' opacity='0.9'/><path d='M32 8 L50 16 L50 32 Q50 48 32 56 Q14 48 14 32 L14 16 Z' fill='url(%23g)' opacity='0.95'/><path d='M32 8 L50 16 L50 32 Q50 48 32 56 Q14 48 14 32 L14 16 Z' fill='none' stroke='%2300d9ff' stroke-width='1.5' opacity='0.7'/><rect x='28' y='28' width='8' height='10' rx='1' fill='%230a0e27' opacity='0.8'/><circle cx='32' cy='25' r='3.5' fill='none' stroke='%230a0e27' stroke-width='2' opacity='0.8'/></svg>">
+    
     <style>
         * {
             margin: 0;
@@ -345,7 +349,7 @@
             font-weight: 500;
         }
 
-        input, textarea {
+        input, textarea, select {
             padding: 15px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--glass-border);
@@ -355,7 +359,16 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, textarea:focus {
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: var(--text);
+        }
+
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 15px var(--accent-glow);
@@ -547,7 +560,7 @@
     <section id="contact">
         <h2 class="fade-in">Contactez-moi</h2>
         <div class="contact-container fade-in">
-            <!-- FORMULAIRE FORMSPREE -->
+            <!-- FORMULAIRE FORMSPREE AVEC PROTECTION SPAM -->
             <form 
                 class="contact-form" 
                 id="contactForm"
@@ -560,18 +573,35 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="_replyto" required>
                 </div>
                 <div class="form-group">
                     <label for="service">Service souhaité</label>
-                    <input type="text" id="service" name="service" maxlength="200" placeholder="Ex: Création site web, PC lent ...">
+                    <select id="service" name="service" required>
+                        <option value="">-- Sélectionnez un service --</option>
+                        <option value="Cybersécurité">🛡️ Cybersécurité</option>
+                        <option value="Développement Web">💻 Développement Web</option>
+                        <option value="Réparation PC">🔧 Réparation PC</option>
+                        <option value="Maintenance">📱 Maintenance</option>
+                        <option value="Formation">🎓 Formation</option>
+                        <option value="Intervention Rapide">⚡ Intervention Rapide</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
                     <textarea id="message" name="message" maxlength="5000" required></textarea>
                 </div>
-                <!-- Protection anti-spam honeypot (invisible) -->
+                
+                <!-- PROTECTIONS ANTI-SPAM -->
+                <!-- Honeypot (piège pour bots) -->
                 <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                
+                <!-- Empêche la redirection par Formspree -->
+                <input type="hidden" name="_next" value="https://cyberash.netlify.app/#contact">
+                
+                <!-- Active le sujet personnalisé -->
+                <input type="hidden" name="_subject" value="Nouveau message depuis CyberAsh !">
+                
                 <button type="submit" id="submitBtn">Envoyer</button>
             </form>
             <div id="successMessage" style="display:none; color: var(--accent); text-align: center; padding: 20px; animation: fadeInUp 0.5s;">
@@ -584,7 +614,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 CyberTech Solutions. Tous droits réservés.</p>
+        <p>&copy; 2025 CyberAsh Solutions. Tous droits réservés.</p>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/killian-rio-65b879388/" title="LinkedIn">💼</a>
             <a href="#" title="GitHub">🔗</a>
@@ -712,6 +742,14 @@
                         form.style.display = 'none';
                         successMessage.style.display = 'block';
                         form.reset();
+                        
+                        // Réafficher le formulaire après 10 secondes
+                        setTimeout(() => {
+                            form.style.display = 'flex';
+                            successMessage.style.display = 'none';
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Envoyer';
+                        }, 10000);
                     } else {
                         throw new Error('Erreur serveur');
                     }
