@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersécurité - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #00ff88;
+            font-size: 2.2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        .status-banner {
+            background: linear-gradient(135deg, rgba(255, 200, 0, 0.2), rgba(255, 150, 0, 0.2));
+            border: 2px solid rgba(255, 200, 0, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .status-banner h2 {
+            color: #ffcc00;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .status-banner p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ccff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #00ccff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(180deg, #00ff88, #00ccff);
+            border-radius: 2px;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 12px 0 12px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .coming-soon {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 204, 255, 0.15));
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .coming-soon h3 {
+            color: #00ff88;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon p {
+            color: #e0e0e0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo">🛡️ CyberSlash Solutions</div>
+            <div class="subtitle">Cybersécurité & Services Informatiques</div>
+        </div>
+
+        <h1>🛡️ Cybersécurité</h1>
+
+        <div class="intro">
+            Étudiant passionné par la cybersécurité, je me forme activement pour développer des compétences solides en protection et en prévention des menaces numériques.
+        </div>
+
+        <div class="status-banner">
+            <h2>🚧 Actuellement en mode apprentissage</h2>
+            <p>Je développe actuellement mes compétences et certifications en cybersécurité pour vous proposer des services professionnels de haute qualité.</p>
+            <p style="margin-top: 15px;"><strong>Mes services en cybersécurité arrivent bientôt !</strong></p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎯 Domaines d'expertise en développement</div>
+            <ul>
+                <li><span class="highlight">Analyse de vulnérabilités</span> - Identification des failles de sécurité dans vos systèmes</li>
+                <li><span class="highlight">Tests d'intrusion (Pentesting)</span> - Simulation d'attaques pour évaluer votre niveau de protection</li>
+                <li><span class="highlight">Sécurisation des réseaux</span> - Configuration et optimisation de vos infrastructures</li>
+                <li><span class="highlight">Protection des données</span> - Mise en place de stratégies de chiffrement et sauvegarde</li>
+                <li><span class="highlight">Audit de sécurité</span> - Évaluation complète de votre posture de sécurité</li>
+                <li><span class="highlight">Réponse aux incidents</span> - Gestion et résolution des incidents de sécurité</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📚 Formations & Certifications en cours</div>
+            <ul>
+                <li>Formation continue en cybersécurité offensive et défensive</li>
+                <li>Participation active à des challenges CTF (Capture The Flag)</li>
+                <li>EJPT en préparation & Projet FoxyHack</li>
+                <li>Collaboration avec des experts du domaine via CyberFidelis</li>
+                <li>Pratique régulière sur des plateformes d'apprentissage (HackTheBox, RootMe..)</li>
+            </ul>
+        </div>
+
+        <div class="coming-soon">
+            <h3>🚀 Services à venir</h3>
+            <p>
+                Une fois mes certifications obtenues et mon expertise consolidée, je proposerai des services complets en cybersécurité adaptés aux particuliers, PME et associations.
+            </p>
+            <p style="margin-top: 20px;">
+                <strong>Restez connecté pour être informé du lancement de ces services !</strong>
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">💡 En attendant, je peux vous aider avec :</div>
+            <ul>
+                <li>Sensibilisation aux bonnes pratiques de sécurité informatique</li>
+                <li>Conseils en hygiène numérique pour protéger vos données personnelles</li>
+                <li>Recommandations d'outils et logiciels de sécurité gratuits et fiables</li>
+                <li>Accompagnement dans la mise en place de mesures de protection basiques</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Votre futur partenaire en cybersécurité</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

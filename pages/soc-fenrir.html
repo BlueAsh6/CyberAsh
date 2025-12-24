@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC-Fenrir - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(20, 10, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(138, 43, 226, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #8a2be2, #da70d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #8a2be2;
+            font-size: 2.5rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .event-badge {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(218, 112, 214, 0.2));
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #da70d6;
+        }
+
+        .intro {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-left: 4px solid #8a2be2;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .intro strong {
+            color: #da70d6;
+            font-size: 1.2rem;
+        }
+
+        .mission-highlight {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(218, 112, 214, 0.15));
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .mission-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .mission-title {
+            font-size: 1.8rem;
+            color: #da70d6;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .mission-text {
+            color: #e0e0e0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: #da70d6;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .info-label {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .info-value {
+            color: #da70d6;
+            font-size: 1.6rem;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-left: 4px solid #8a2be2;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateX(5px);
+            border-left-color: #da70d6;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #8a2be2;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .description-text {
+            color: #d0d0d0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        li {
+            padding: 12px 0 12px 40px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        li::before {
+            content: '🐺';
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        .timeline {
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid #da70d6;
+        }
+
+        .timeline-date {
+            font-size: 1.3rem;
+            color: #da70d6;
+            font-weight: bold;
+            min-width: 150px;
+        }
+
+        .timeline-content {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .team-highlight {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(218, 112, 214, 0.15));
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .team-title {
+            font-size: 2rem;
+            color: #da70d6;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .team-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
+        }
+
+        .team-text {
+            color: #e0e0e0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .soc-definition {
+            background: rgba(138, 43, 226, 0.08);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .def-title {
+            font-size: 1.5rem;
+            color: #8a2be2;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .def-text {
+            color: #d0d0d0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .organizers {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .organizers-title {
+            color: #da70d6;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .organizers-text {
+            color: #d0d0d0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(138, 43, 226, 0.3);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .document {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline-date {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo">🛡️ CyberSlash Solutions</div>
+            <div class="subtitle">Cybersécurité & Services Informatiques</div>
+        </div>
+
+        <h1>🐺 SOC-Fenrir</h1>
+
+        <div class="event-badge">
+            <span class="badge-item">🔒 SECURITY OPERATIONS CENTER</span>
+            <span class="badge-item">🎓 PROJET ÉTUDIANT YNOV</span>
+            <span class="badge-item">⚔️ CYBERFIDELIS</span>
+        </div>
+
+        <div class="intro">
+            <strong>Un SOC étudiant, par des étudiants, pour la cybersécurité !</strong><br>
+            SOC-Fenrir est un projet ambitieux entièrement conçu et construit par des étudiants d'Ynov, membres 
+            de l'association CyberFidelis. Lancé l'année dernière, ce projet en constante évolution vise à créer 
+            un véritable centre opérationnel de sécurité capable de détecter, analyser et répondre aux menaces 
+            cybernétiques en temps réel.
+        </div>
+
+        <div class="soc-definition">
+            <div class="def-title">
+                <span>📚</span>
+                <span>Qu'est-ce qu'un SOC ?</span>
+            </div>
+            <div class="def-text">
+                Un <strong>SOC (Security Operations Center)</strong> ou Centre Opérationnel de Sécurité est une unité 
+                centralisée qui traite les questions de sécurité sur le plan organisationnel et technique. Il regroupe 
+                des experts en cybersécurité qui surveillent, détectent, analysent et répondent aux incidents de sécurité 
+                24h/24 et 7j/7.<br><br>
+                Le SOC utilise une combinaison de technologies avancées (SIEM, EDR, threat intelligence) et de processus 
+                pour protéger les actifs numériques de l'organisation contre les cyberattaques, les violations de données 
+                et autres menaces informatiques.
+            </div>
+        </div>
+
+        <div class="mission-highlight">
+            <span class="mission-icon">🎯</span>
+            <div class="mission-title">LA MISSION</div>
+            <div class="mission-text">
+                Construire un <strong>Security Operations Center fonctionnel et performant</strong> entièrement géré 
+                par des étudiants. L'objectif : acquérir une expérience pratique en surveillance de sécurité, détection 
+                d'incidents, analyse de menaces et réponse aux attaques dans un environnement réel.
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">
+                <span class="section-icon">🔧</span>
+                <span>Technologies & Outils</span>
+            </div>
+            <div class="description-text">
+                Le SOC-Fenrir s'appuie sur un ensemble de technologies et d'outils professionnels pour assurer 
+                une surveillance et une réponse efficaces :
+            </div>
+            <ul>
+                <li><strong>SIEM (Security Information and Event Management)</strong> : centralisation et analyse des logs</li>
+                <li><strong>IDS/IPS</strong> : détection et prévention des intrusions réseau</li>
+                <li><strong>EDR (Endpoint Detection and Response)</strong> : surveillance des endpoints</li>
+                <li><strong>Threat Intelligence</strong> : intégration de flux de renseignement sur les menaces</li>
+                <li><strong>SOAR</strong> : automatisation de la réponse aux incidents</li>
+                <li><strong>Outils d'analyse forensique</strong> : investigation approfondie des incidents</li>
+            </ul>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">
+                <span class="section-icon">💡</span>
+                <span>Compétences Développées</span>
+            </div>
+            <ul>
+                <li><strong>Surveillance en temps réel</strong> : monitoring 24/7 des systèmes et réseaux</li>
+                <li><strong>Analyse de logs</strong> : corrélation d'événements et identification de patterns suspects</li>
+                <li><strong>Réponse aux incidents</strong> : gestion et containment des cyberattaques</li>
+                <li><strong>Threat Hunting</strong> : recherche proactive de menaces avancées</li>
+                <li><strong>Forensique numérique</strong> : investigation post-incident et analyse de malware</li>
+                <li><strong>Création de playbooks</strong> : documentation et standardisation des procédures</li>
+            </ul>
+        </div>
+
+        <div class="team-highlight">
+            <span class="team-icon">🐺⚔️</span>
+            <div class="team-title">Un Projet CyberFidelis</div>
+            <div class="team-text">
+                SOC-Fenrir est porté par des étudiants Ynov et membre de <strong>CyberFidelis</strong> pour certains<br><br>
+                <strong style="color: #da70d6; font-size: 1.2rem;">Je participe à ce projet !</strong><br>
+                Membre récent de l’équipe SOC-Fenrir, je découvre progressivement le projet et j’apprends comment le centre opérationnel 
+                de sécurité est structuré et fonctionne. 
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Votre partenaire digital</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

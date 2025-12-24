@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervention Rapide - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(255, 200, 0, 0.4);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(255, 200, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(255, 200, 0, 0.4);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 2.2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro {
+            background: rgba(255, 200, 0, 0.15);
+            border: 1px solid rgba(255, 200, 0, 0.4);
+            border-left: 4px solid #ffcc00;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        .urgent-banner {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.2), rgba(255, 50, 50, 0.2));
+            border: 3px solid rgba(255, 100, 100, 0.6);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .urgent-banner h2 {
+            color: #ff6464;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .urgent-banner p {
+            color: #e0e0e0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 200, 0, 0.3);
+            border-left: 4px solid #ffcc00;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #ffcc00;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(180deg, #ffcc00, #ff9900);
+            border-radius: 2px;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 12px 0 12px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            font-size: 1.3rem;
+        }
+
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .price-box {
+            background: rgba(255, 200, 0, 0.1);
+            border: 2px solid rgba(255, 200, 0, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .price-box h3 {
+            color: #ffcc00;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #ff9900;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
+        }
+
+        .price-note {
+            color: #b0b0b0;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+        .warning-box {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-left: 4px solid #ff6464;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: #ff6464;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-urgent {
+            background: linear-gradient(135deg, rgba(255, 200, 0, 0.2), rgba(255, 153, 0, 0.2));
+            border: 3px solid rgba(255, 200, 0, 0.6);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 35px 0;
+            text-align: center;
+        }
+
+        .contact-urgent h3 {
+            color: #ffcc00;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-urgent .phone {
+            font-size: 2rem;
+            color: #ff9900;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .contact-urgent .email {
+            font-size: 1.3rem;
+            color: #00ccff;
+            margin-top: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 200, 0, 0.4);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo">⚡ CyberSlash Solutions</div>
+            <div class="subtitle">Service d'Intervention Rapide</div>
+        </div>
+
+        <h1>⚡ Intervention Rapide</h1>
+
+        <div class="intro">
+            Disponible pour des interventions d'urgence en cas d'incident informatique ou de panne critique (en fonction de l'indicent en question).
+        </div>
+
+        <div class="urgent-banner">
+            <h2>🚨 URGENCE INFORMATIQUE ?</h2>
+            <p>
+                Votre ordinateur ne démarre plus ? Erreur système ? Problème bloquant votre activité ?
+            </p>
+            <p style="margin-top: 15px;">
+                <strong>Je suis là pour vous aider rapidement !</strong>
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎯 Situations d'urgence prises en charge</div>
+            <ul>
+                <li><span class="highlight">Ordinateur qui ne démarre plus</span> - Écran noir, blocage au démarrage</li>
+                <li><span class="highlight">Perte de données importante</span> - Fichiers supprimés, disque endommagé</li>
+                <li><span class="highlight">Virus ou ransomware</span> - Système compromis, fichiers chiffrés</li>
+                <li><span class="highlight">Panne réseau critique</span> - Connexion perdue, impossibilité de travailler</li>
+                <li><span class="highlight">Problème logiciel bloquant</span> - Application essentielle qui plante</li>
+                <li><span class="highlight">Incident de sécurité</span> - Suspicion de piratage, comportement anormal</li>
+                <li><span class="highlight">Panne matérielle urgente</span> - Disque dur défaillant, surchauffe</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">⚡ Ce que comprend l'intervention</div>
+            <ul>
+                <li>Intervention en urgence (sous 24-48h selon disponibilité)</li>
+                <li>Résolution du problème ou mise en place d'une solution temporaire</li>
+                <li>Récupération de données si possible</li>
+                <li>Conseils pour éviter la récidive</li>
+                <li>Rapport d'intervention</li>
+            </ul>
+        </div>
+
+        <div class="price-box">
+            <h3>💰 Tarification Urgence</h3>
+            <div class="price"></div>
+            <p class="price-note">Tarif majoré pour intervention en urgence</p>
+            <p class="price-note" style="margin-top: 10px;">+ Frais de déplacement si nécessaire</p>
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Important à savoir</h4>
+            <p style="color: #d0d0d0; line-height: 1.7;">
+                En cas d'intervention d'urgence, je fais mon maximum pour résoudre le problème rapidement. Toutefois, certaines situations peuvent nécessiter du temps ou du matériel spécifique. Je vous informe toujours clairement de la situation et des options possibles. 
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🛠️ Types d'intervention</div>
+            <ul>
+                <li><span class="highlight">À distance</span> - Si le problème le permet, intervention immédiate par prise en main (ssh/telnet..)</li>
+                <li><span class="highlight">Sur place</span> - Déplacement rapide dans un rayon de 40km</li>
+            </ul>
+        </div>
+
+        <div class="section" style="border-left-color: #00ff88; border-color: rgba(0, 255, 136, 0.3);">
+            <div class="section-title" style="color: #00ff88;">💡 Conseils prévention</div>
+            <ul>
+                <li>Effectuez des sauvegardes régulières de vos données importantes</li>
+                <li>Maintenez vos systèmes et logiciels à jour</li>
+                <li>Utilisez un antivirus fiable et à jour</li>
+                <li>Évitez les comportements à risque en ligne</li>
+                <li>Notez mes coordonnées en cas d'urgence future</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Votre secours informatique d'urgence</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

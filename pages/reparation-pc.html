@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offre Diagnostic PC - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #00ff88;
+            font-size: 2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .formule {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .formule:hover {
+            transform: translateX(5px);
+            border-left-color: #00ccff;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .formule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .formule-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #00ccff;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #b0b0b0;
+            font-weight: normal;
+        }
+
+        .description {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #00ff88;
+        }
+
+        .section-title {
+            color: #00ccff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, #00ff88, #00ccff);
+            border-radius: 2px;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 10px 0 10px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-left: 4px solid #ff6464;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .warning-box li::before {
+            content: '✗';
+            color: #ff6464;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b0b0b0;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-icon {
+            font-size: 1.3rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .special-note {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 255, 0.1));
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .special-note-title {
+            color: #00ff88;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+            
+            .formule {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo">🛡️ CyberSlash Solutions</div>
+            <div class="subtitle">Cybersécurité & Services Informatiques</div>
+        </div>
+
+        <h1>📋 Offre Officielle – Diagnostic PC</h1>
+
+        <!-- FORMULE 1 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🟢 FORMULE 1</span>
+                    <span>Diagnostic PC Sécurité & Performance</span>
+                </div>
+                <div class="price">40€ <span class="price-unit">forfait</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Idéal si</strong> votre ordinateur est lent, instable ou si vous souhaitez vérifier qu'il est sain et sécurisé.
+            </div>
+
+            <div class="section-title">📦 Ce que comprend la prestation :</div>
+            <ul>
+                <li>Analyse complète de l'état général du PC</li>
+                <li>Vérification de la sécurité (virus, logiciels malveillants, risques connus)</li>
+                <li>Contrôle de la santé du disque dur et de la mémoire (RAM)</li>
+                <li>Analyse des performances (démarrage, charge système, anomalies)</li>
+                <li>Détection des problèmes matériels ou logiciels potentiels</li>
+                <li>Recommandations claires et compréhensibles</li>
+            </ul>
+
+            <div class="section-title">📄 Ce que vous recevez :</div>
+            <div class="highlight-box">
+                <ul>
+                    <li>Diagnostic expliqué oralement</li>
+                    <li>Résumé simple avec les points importants</li>
+                    <li>Conseils personnalisés pour prolonger la durée de vie du PC</li>
+                </ul>
+            </div>
+
+            <div class="section-title">🚫 Limitations :</div>
+            <div class="warning-box">
+                <ul>
+                    <li>Aucune modification du système</li>
+                    <li>Aucun accès à vos fichiers personnels</li>
+                    <li>Aucun accès à distance</li>
+                </ul>
+            </div>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Durée :</strong> environ 45 minutes à 1 heure
+            </div>
+        </div>
+
+        <!-- FORMULE 2 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🔵 FORMULE 2</span>
+                    <span>Diagnostic + Optimisation & Application</span>
+                </div>
+                <div class="price">90€ <span class="price-unit">forfait</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Recommandée si</strong> vous souhaitez un PC plus rapide, plus stable et mieux protégé après le diagnostic.
+            </div>
+
+            <div class="section-title">📦 Ce que comprend la prestation :</div>
+            <ul>
+                <li><strong>Tout ce qui est inclus dans la Formule 1</strong></li>
+                <li>Nettoyage logiciel (fichiers inutiles, démarrage, processus lourds)</li>
+                <li>Optimisation des performances générales</li>
+                <li>Mise en place de protections de base (logiciels fiables et gratuits)</li>
+                <li>Vérification et mise en place d'une stratégie de sauvegarde simple</li>
+                <li>Conseils de bonnes pratiques (sécurité, prévention, utilisation)</li>
+            </ul>
+
+            <div class="section-title">📄 Ce que vous recevez :</div>
+            <div class="highlight-box">
+                <ul>
+                    <li>Un PC plus fluide et plus sécurisé</li>
+                    <li>Un rapport détaillé (PDF possible)</li>
+                    <li>Recommandations concrètes à court et long terme</li>
+                </ul>
+            </div>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Durée :</strong> 1h30 à 2h selon l'état du PC
+            </div>
+        </div>
+
+        <!-- FORMULE 3 
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🟣 FORMULE 3</span>
+                    <span>Audit PC Complet & Sécurité Avancée</span>
+                </div>
+                <div class="price">170€ <span class="price-unit">forfait</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Adaptée aux</strong> PC critiques, indépendants ou utilisateurs souhaitant une sécurité renforcée.
+            </div>
+
+            <div class="section-title">📦 Inclut :</div>
+            <ul>
+                <li>Diagnostic complet sécurité & performance</li>
+                <li>Optimisation approfondie du système</li>
+                <li>Mise en place d'une sauvegarde automatisée (clé externe ou cloud existant)</li>
+                <li>Audit de sécurité plus poussé (configuration, risques, prévention)</li>
+                <li>Rapport détaillé avec priorités et recommandations</li>
+                <li>Explications personnalisées et accompagnement utilisateur</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Durée :</strong> 2 à 3 heures selon la configuration
+            </div>
+
+            <div class="special-note">
+                <div class="special-note-title">ℹ️ Formule sur mesure</div>
+                Cette formule est proposée au cas par cas, après diagnostic initial.
+            </div>
+        </div>
+        -->
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Votre partenaire en sécurité informatique</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

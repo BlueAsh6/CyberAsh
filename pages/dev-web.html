@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Développement Web - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #00ff88;
+            font-size: 2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .formule {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .formule:hover {
+            transform: translateX(5px);
+            border-left-color: #00ccff;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .formule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .formule-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #00ccff;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #b0b0b0;
+            font-weight: normal;
+        }
+
+        .description {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #00ff88;
+        }
+
+        .section-title {
+            color: #00ccff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, #00ff88, #00ccff);
+            border-radius: 2px;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 10px 0 10px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b0b0b0;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-icon {
+            font-size: 1.3rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #00ccff;
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+            
+            .formule {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo">🛡️ CyberSlash Solutions</div>
+            <div class="subtitle">Cybersécurité & Services Informatiques</div>
+        </div>
+
+        <h1>💻 Développement Web</h1>
+
+        <div class="intro">
+            <strong>Donnez vie à votre présence en ligne !</strong><br>
+            Je crée des sites web sur mesure, modernes et performants pour valoriser votre activité. 
+            Que vous soyez entrepreneur, artisan, une association ou professionnel, je conçois votre vitrine digitale 
+            avec un design professionnel et une expérience utilisateur optimale.
+        </div>
+
+        <!-- FORMULE 1 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🟢 SITE VITRINE</span>
+                    <span>Site One-Page Essentiel</span>
+                </div>
+                <div class="price">450€ <span class="price-unit">ajustable</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Parfait pour</strong> une présence web rapide et efficace. Toutes les informations essentielles sur une seule page.
+            </div>
+
+            <div class="section-title">📦 Ce que comprend la prestation :</div>
+            <ul>
+                <li>Design moderne et responsive (adapté mobile/tablette)</li>
+                <li>Page unique avec toutes vos sections (accueil, services, à propos, contact)</li>
+                <li>Formulaire de contact fonctionnel</li>
+                <li>Optimisation SEO de base</li>
+                <li>Conseil pour hébergement du site</li>
+                <li>Conseils pour nom de domaine (.com/.fr...)</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Délai :</strong> 15 à 20 jours ouvrés
+            </div>
+        </div>
+
+        <!-- FORMULE 2 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🔵 SITE COMPLET</span>
+                    <span>Site Multi-Pages Professionnel</span>
+                </div>
+                <div class="price">850€ <span class="price-unit">forfait</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Recommandé pour</strong> une présence professionnelle complète avec plusieurs pages de contenu.
+            </div>
+
+            <div class="section-title">📦 Ce que comprend la prestation :</div>
+            <ul>
+                <li><strong>Tout ce qui est inclus dans le Site One-Page</strong></li>
+                <li>Jusqu'à 5 pages personnalisées (Accueil, Services, À propos, Blog, Contact)</li>
+                <li>Menu de navigation professionnel</li>
+                <li>Galerie photos / Portfolio</li>
+                <li>Intégration réseaux sociaux</li>
+                <li>Optimisation SEO avancée</li>
+                <li>Animations et effets modernes</li>
+                <li>Formation à la gestion du contenu (1h) ou 1mois de gestion de contenu offert</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Délai :</strong> 20 à 31 jours ouvrés
+            </div>
+        </div>
+
+        <!-- FORMULE 3 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🟣 PREMIUM</span>
+                    <span>Site Sur-Mesure Avancé</span>
+                </div>
+                <div class="price">Sur devis</div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Pour les projets</strong> nécessitant des fonctionnalités spécifiques et un accompagnement complet.
+            </div>
+
+            <div class="section-title">📦 Inclut :</div>
+            <ul>
+                <li>Tout ce qui est inclus dans le Site Multi-Pages</li>
+                <li>Nombre de pages illimité</li>
+                <li>Fonctionnalités personnalisées (système de réservation, espace membre, blog...)</li>
+                <li>Interface d'administration complète</li>
+                <li>Optimisation performances et sécurité avancée</li>
+                <li>Maintenance 3 mois incluse</li>
+                <li>Formation approfondie (3h)</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Délai :</strong> Sur estimation selon le projet
+            </div>
+        </div>
+
+        <div class="section-title">🛠️ Technologies utilisées :</div>
+        <div class="tech-grid">
+            <div class="tech-item">HTML5 / CSS</div>
+            <div class="tech-item">JavaScript</div>
+            <div class="tech-item">Go/C/Python</div>
+            <div class="tech-item">Node.js</div>
+            <div class="tech-item">Responsive Design</div>
+            <div class="tech-item">SEO Optimisé</div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="section-title">✨ Services complémentaires :</div>
+            <ul>
+                <li>Refonte de site existant</li>
+                <li>Maintenance mensuelle (à partir de 30€/mois)</li>
+                <li>Optimisation SEO avancée</li>
+                <li>Rédaction de contenu</li>
+                <li>Photographie professionnelle (sur demande)</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Votre partenaire digital</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

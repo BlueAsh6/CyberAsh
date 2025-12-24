@@ -2,10 +2,19 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title>CyberSlash Solutions - Cybersécurité & Services Informatiques</title>
+<meta name="description" content="CyberSlash Solutions : expert en cybersécurité, développement web et services informatiques. Protégez votre entreprise avec nos solutions innovantes.">
+<meta name="keywords" content="cybersécurité, pentest, développement web, services informatiques, sécurité informatique">
+
+<!-- Open Graph pour réseaux sociaux -->
+<meta property="og:title" content="CyberSlash Solutions">
+<meta property="og:description" content="Expert en cybersécurité et services informatiques">
+<meta property="og:url" content="https://cyberslash.netlify.app">
+<meta property="og:type" content="website">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberSlash Solutions | Cybersécurité & Développement Web</title>
     
-    <!-- FAVICON CYBERASH -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%2300d9ff'/><stop offset='50%25' style='stop-color:%230066ff'/><stop offset='100%25' style='stop-color:%238000ff'/></linearGradient></defs><circle cx='32' cy='32' r='30' fill='%230a0e27' opacity='0.9'/><path d='M32 8 L50 16 L50 32 Q50 48 32 56 Q14 48 14 32 L14 16 Z' fill='url(%23g)' opacity='0.95'/><path d='M32 8 L50 16 L50 32 Q50 48 32 56 Q14 48 14 32 L14 16 Z' fill='none' stroke='%2300d9ff' stroke-width='1.5' opacity='0.7'/><rect x='28' y='28' width='8' height='10' rx='1' fill='%230a0e27' opacity='0.8'/><circle cx='32' cy='25' r='3.5' fill='none' stroke='%230a0e27' stroke-width='2' opacity='0.8'/></svg>">
     
     <style>
@@ -32,7 +41,6 @@
             line-height: 1.6;
         }
 
-        /* Background animé */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -61,7 +69,6 @@
             100% { transform: translate(50px, 50px); }
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 20px;
@@ -116,7 +123,6 @@
             width: 100%;
         }
 
-        /* Citation cyber - reste en haut fixe */
         .cyber-quote {
             position: fixed !important;
             top: 90px !important;
@@ -154,7 +160,6 @@
             margin-right: 8px;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -214,7 +219,6 @@
             box-shadow: 0 5px 30px var(--accent-glow);
         }
 
-        /* Sections */
         section {
             padding: 100px 20px;
             max-width: 1200px;
@@ -239,7 +243,6 @@
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -255,12 +258,29 @@
             padding: 40px;
             transition: all 0.4s ease;
             cursor: pointer;
+            position: relative;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
             box-shadow: 0 10px 40px var(--accent-glow);
+        }
+
+        .service-card.clickable::after {
+            content: '📄 Cliquez pour voir les détails';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card.clickable:hover::after {
+            opacity: 1;
         }
 
         .service-icon {
@@ -279,7 +299,6 @@
             color: var(--text-dim);
         }
 
-        /* Portfolio */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -295,11 +314,28 @@
             overflow: hidden;
             transition: all 0.4s ease;
             cursor: pointer;
+            position: relative;
         }
 
         .portfolio-item:hover {
             transform: scale(1.05);
             border-color: var(--accent);
+        }
+
+        .portfolio-item::after {
+            content: '📄 Voir le projet';
+            position: absolute;
+            bottom: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover::after {
+            opacity: 1;
         }
 
         .portfolio-img {
@@ -321,7 +357,88 @@
             color: var(--accent);
         }
 
-        /* Contact */
+        /* MODAL HTML */
+        .html-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .html-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .html-modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .html-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .html-modal-header h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0 10px;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .html-viewer {
+            flex: 1;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: white;
+        }
+
         .contact-container {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -402,7 +519,6 @@
             transform: none;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -429,7 +545,6 @@
             transform: translateY(-3px);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             nav ul {
                 gap: 15px;
@@ -452,13 +567,17 @@
                 display: none;
             }
 
-            .fade-in {
-                opacity: 1;
-                transform: translateY(0);
+            .html-modal-content {
+                width: 95%;
+                height: 95%;
+                padding: 15px;
+            }
+
+            .html-modal-header h3 {
+                font-size: 1.2rem;
             }
         }
 
-        /* Animation d'apparition au scroll */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -469,17 +588,169 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        #about {
+            padding: 80px 20px;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 280px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .about-image:hover::before {
+            opacity: 1;
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 15px 50px var(--accent-glow);
+        }
+
+        .avatar-placeholder {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--accent), #00ccff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px var(--accent-glow);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-cta {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-cta::after {
+            content: '📄';
+            font-size: 1.3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+
+        .about-text h2::after {
+            left: 0;
+            transform: translateX(0);
+        }
+
+        .about-text p {
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .about-text .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                gap: 30px;
+            }
+
+            .about-text h2 {
+                text-align: center;
+            }
+
+            .about-text h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .avatar-placeholder {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="bg-animation"></div>
 
-    <!-- Citation cyber qui change -->
     <div class="cyber-quote" id="cyberQuote"></div>
+
+    <!-- MODAL HTML -->
+    <div class="html-modal" id="htmlModal">
+        <div class="html-modal-content">
+            <div class="html-modal-header">
+                <h3 id="htmlTitle">Document</h3>
+                <button class="close-modal" onclick="closeHtmlModal()">×</button>
+            </div>
+            <iframe class="html-viewer" id="htmlViewer"></iframe>
+        </div>
+    </div>
 
     <nav>
         <ul>
             <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -494,35 +765,55 @@
         </div>
     </section>
 
+    <section id="about">
+        <div class="about-container fade-in">
+            <div class="about-image" data-page="qui-suis-je" data-title="Qui suis-je ?">
+                <div class="avatar-placeholder">📑</div>
+                <div class="about-cta">Plus d'informations ici</div>
+            </div>
+            <div class="about-text">
+                <h2>Qui suis-je ?</h2>
+                <p>
+                    Passionné de <span class="highlight">cybersécurité</span> et de <span class="highlight">développement web</span>, 
+                    je mets mes compétences au service de la protection de vos données et de la création de vos projets digitaux.
+                </p>
+                <p>
+                    Actuellement en formation continue, je développe mes expertises à travers des projets concrets 
+                    et des collaborations avec des acteurs du domaine.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section id="services">
         <h2 class="fade-in">Mes Services</h2>
         <div class="services-grid">
-            <div class="service-card fade-in">
+            <div class="service-card fade-in clickable" data-page="cybersecurite" data-title="Cybersécurité">
                 <span class="service-icon">🛡️</span>
                 <h3>Cybersécurité</h3>
-                <p>Actuellement en mode apprentissage 🖥️… Mes services arrivent bientôt !</p>
+                <p>Actuellement en mode apprentissage… Mes services arrivent bientôt !</p>
             </div>
-            <div class="service-card fade-in">
+            <div class="service-card fade-in clickable" data-page="dev-web" data-title="Développement Web">
                 <span class="service-icon">💻</span>
                 <h3>Développement Web</h3>
                 <p>Création de sites vitrines informatifs pour valoriser votre activité et votre image en ligne.</p>
             </div>
-            <div class="service-card fade-in">
-                <span class="service-icon">🔧</span>
-                <h3>Réparation PC</h3>
+            <div class="service-card fade-in clickable" data-page="reparation-pc" data-title="Diagnostic PC">
+                <span class="service-icon">🛠️</span>
+                <h3>Diagnostique PC</h3>
                 <p>Diagnostic informatique, analyse des problèmes, optimisation des performances et interventions ciblées.</p>
             </div>
-            <div class="service-card fade-in">
+            <div class="service-card fade-in clickable" data-page="osint-audit" data-title="osint-audit">
                 <span class="service-icon">📱</span>
-                <h3>Maintenance</h3>
-                <p>Support et accompagnement informatique pour un suivi continu ou une aide ponctuelle.</p>
+                <h3>Osint-audit</h3>
+                <p>analyse approfondie des informations publiques pour identifier risques, expositions et opportunités.</p>
             </div>
-            <div class="service-card fade-in">
+            <div class="service-card fade-in clickable" data-page="formation" data-title="Formation">
                 <span class="service-icon">🎓</span>
                 <h3>Formation</h3>
                 <p>Sensibilisation et apprentissage en cybersécurité avec CyberFidelis, l'initiative n°1 en France !</p>
             </div>
-            <div class="service-card fade-in">
+            <div class="service-card fade-in clickable" data-page="intervention-rapide" data-title="Intervention Rapide">
                 <span class="service-icon">⚡</span>
                 <h3>Intervention Rapide</h3>
                 <p>Disponible pour des interventions d'urgence en cas d'incident ou panne critique.</p>
@@ -533,22 +824,22 @@
     <section id="portfolio">
         <h2 class="fade-in">Projets Réalisés</h2>
         <div class="portfolio-grid">
-            <div class="portfolio-item fade-in">
-                <div class="portfolio-img">🌐</div>
+            <div class="portfolio-item fade-in" data-page="foxyhack" data-title="FoxyHack">
+                <div class="portfolio-img">🪖</div>
                 <div class="portfolio-content">
                     <h3>FoxyHack</h3>
                     <p>Un challenge de cybersécurité pour la Base 105 militaire d'Évreux.</p>
                 </div>
             </div>
-            <div class="portfolio-item fade-in">
-                <div class="portfolio-img">🏢</div>
+            <div class="portfolio-item fade-in" data-page="soc-fenrir" data-title="SOC Fenrir">
+                <div class="portfolio-img">🕵🏼</div>
                 <div class="portfolio-content">
                     <h3>SOC Fenrir</h3>
                     <p>Participation au développement d'un centre opérationnel de cybersécurité (SOC).</p>
                 </div>
             </div>
-            <div class="portfolio-item fade-in">
-                <div class="portfolio-img">📊</div>
+            <div class="portfolio-item fade-in" data-page="projets-annexes" data-title="Projets Annexes">
+                <div class="portfolio-img">📚</div>
                 <div class="portfolio-content">
                     <h3>Projets Annexes</h3>
                     <p>Puissance 4 web, développement d'un jeu dans un shell, GroupieTracker, …</p>
@@ -560,7 +851,6 @@
     <section id="contact">
         <h2 class="fade-in">Contactez-moi</h2>
         <div class="contact-container fade-in">
-            <!-- FORMULAIRE FORMSPREE AVEC PROTECTION SPAM -->
             <form 
                 class="contact-form" 
                 id="contactForm"
@@ -581,8 +871,8 @@
                         <option value="">-- Sélectionnez un service --</option>
                         <option value="Cybersécurité">🛡️ Cybersécurité</option>
                         <option value="Développement Web">💻 Développement Web</option>
-                        <option value="Réparation PC">🔧 Réparation PC</option>
-                        <option value="Maintenance">📱 Maintenance</option>
+                        <option value="Diagnostic PC">🔧 Diagnostic PC</option>
+                        <option value="Osint-audit">📱 Osint-audit</option>
                         <option value="Formation">🎓 Formation</option>
                         <option value="Intervention Rapide">⚡ Intervention Rapide</option>
                     </select>
@@ -592,14 +882,8 @@
                     <textarea id="message" name="message" maxlength="5000" required></textarea>
                 </div>
                 
-                <!-- PROTECTIONS ANTI-SPAM -->
-                <!-- Honeypot (piège pour bots) -->
                 <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-                
-                <!-- Empêche la redirection par Formspree -->
                 <input type="hidden" name="_next" value="https://cyberslash.netlify.app/#contact">
-                
-                <!-- Active le sujet personnalisé -->
                 <input type="hidden" name="_subject" value="Nouveau message depuis CyberSlash !">
                 
                 <button type="submit" id="submitBtn">Envoyer</button>
@@ -623,7 +907,6 @@
     </footer>
 
     <script>
-        // Citations cybersécurité (32 citations)
         const cyberQuotes = [
             "La sécurité à 100% n'existe pas, mais la vigilance doit être permanente.",
             "Un mot de passe fort vaut mieux qu'un antivirus faible.",
@@ -644,50 +927,81 @@
             "L'authentification à deux facteurs : deux fois plus de sécurité.",
             "Un audit de sécurité vaut mieux que mille regrets.",
             "Le HTTPS n'est pas une option, c'est une obligation.",
-            "Chiffrez aujourd'hui ce que vous voulez protéger demain.",
-            "Les logs ne mentent jamais, apprenez à les lire.",
-            "Un VPN est votre cape d'invisibilité numérique.",
-            "La sécurité par l'obscurité n'est pas une stratégie.",
-            "Patchez vite, patchez bien, dormez tranquille.",
-            "Les données perdues ne reviennent jamais seules.",
-            "Un ransomware ne prévient pas avant de frapper.",
-            "Testez vos sauvegardes avant d'en avoir besoin.",
-            "Le social engineering exploite la confiance, restez méfiant.",
-            "Segmentez votre réseau comme vous cloisonnez votre maison.",
-            "Un certificat expiré est une porte grande ouverte.",
-            "La cybersécurité se construit couche par couche.",
-            "Formez vos équipes : le maillon humain est crucial."
+            "Chiffrez aujourd'hui ce que vous voulez protéger demain."
         ];
 
         let currentQuoteIndex = 0;
         const quoteElement = document.getElementById('cyberQuote');
 
         function changeQuote() {
-            // Sortir avec animation
             quoteElement.classList.remove('show');
             quoteElement.classList.add('hide');
             
             setTimeout(() => {
                 currentQuoteIndex = (currentQuoteIndex + 1) % cyberQuotes.length;
                 quoteElement.textContent = cyberQuotes[currentQuoteIndex];
-                
-                // Entrer avec animation
                 quoteElement.classList.remove('hide');
                 quoteElement.classList.add('show');
             }, 500);
         }
 
-        // Initialiser la première citation
         if (quoteElement) {
             quoteElement.textContent = cyberQuotes[0];
             setTimeout(() => {
                 quoteElement.classList.add('show');
             }, 100);
-            // Changer toutes les 8 secondes
             setInterval(changeQuote, 8000);
         }
 
-        // Animation au scroll
+        // GESTION MODAL HTML - Charge les fichiers depuis le dossier pages/
+        function openHtmlModal(pageName, title) {
+            const modal = document.getElementById('htmlModal');
+            const viewer = document.getElementById('htmlViewer');
+            const titleEl = document.getElementById('htmlTitle');
+            
+            titleEl.textContent = title;
+            
+            // Charger le fichier HTML depuis le dossier pages/
+            viewer.src = `pages/${pageName}.html`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeHtmlModal() {
+            const modal = document.getElementById('htmlModal');
+            const viewer = document.getElementById('htmlViewer');
+            
+            modal.classList.remove('active');
+            viewer.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Gestion clics sur les cartes
+        document.querySelectorAll('.service-card.clickable, .portfolio-item, .about-image').forEach(card => {
+            card.addEventListener('click', function() {
+                const pageName = this.getAttribute('data-page');
+                const title = this.getAttribute('data-title');
+                if (pageName) {
+                    openHtmlModal(pageName, title);
+                }
+            });
+        });
+
+        // Fermer avec Echap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeHtmlModal();
+            }
+        });
+
+        // Fermer en cliquant à l'extérieur
+        document.getElementById('htmlModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeHtmlModal();
+            }
+        });
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -703,7 +1017,6 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -714,7 +1027,6 @@
             });
         });
 
-        // GESTION FORMULAIRE AVEC FORMSPREE
         const form = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
@@ -723,8 +1035,6 @@
         if (form) {
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-
-                // Désactiver le bouton
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Envoi en cours...';
 
@@ -738,12 +1048,10 @@
                     });
 
                     if (response.ok) {
-                        // Succès
                         form.style.display = 'none';
                         successMessage.style.display = 'block';
                         form.reset();
                         
-                        // Réafficher le formulaire après 10 secondes
                         setTimeout(() => {
                             form.style.display = 'flex';
                             successMessage.style.display = 'none';
@@ -757,7 +1065,6 @@
                     console.error('Erreur:', error);
                     errorMessage.style.display = 'block';
                     
-                    // Réactiver le bouton après erreur
                     setTimeout(() => {
                         submitBtn.disabled = false;
                         submitBtn.textContent = 'Envoyer';
@@ -767,7 +1074,6 @@
             });
         }
 
-        // Effet parallaxe léger sur le hero
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero-content');
@@ -776,7 +1082,6 @@
                 hero.style.opacity = 1 - (scrolled / window.innerHeight);
             }
 
-            // Faire disparaître la citation quand on scroll
             if (quoteElement) {
                 if (scrolled > 100) {
                     quoteElement.style.opacity = '0';

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui suis-je - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        .logo {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #00ff88;
+            font-size: 2.2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro-text {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            font-size: 1.15rem;
+            text-align: center;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ccff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #00ccff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(180deg, #00ff88, #00ccff);
+            border-radius: 2px;
+        }
+
+        p {
+            color: #d0d0d0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 12px 0 12px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .value-card {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .value-card h4 {
+            color: #00ff88;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 204, 255, 0.15));
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 35px 0;
+            text-align: center;
+            font-style: italic;
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 3rem;
+            color: #00ff88;
+            line-height: 0;
+        }
+
+        .quote-box::after {
+            content: '"';
+            font-size: 3rem;
+            color: #00ff88;
+            line-height: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="profile-circle">🔒</div>
+            <div class="logo">CyberSlash Solutions</div>
+            <div class="subtitle">Cybersécurité & Développement Web</div>
+        </div>
+
+        <h1>👋 Qui suis-je ?</h1>
+
+       <div class="intro-text">
+    Passionné de <strong style="color: #00ff88;">cybersécurité</strong> et de <strong style="color: #00ccff;">développement web</strong>, je mets mes compétences au service de solutions numériques fiables, performantes et sécurisées.
+</div>
+
+<div class="section">
+    <div class="section-title">🎯 Mon parcours</div>
+    <p>
+    <span class="highlight">En formation spécialisée en cybersécurité à Ynov Campus</span> et membre de <span class="highlight">CyberFidelis</span>, je développe une approche concrète et pragmatique de la sécurité numérique.
+    </p>
+    <p>
+        Je combine informatique, cybersécurité et développement web pour proposer des solutions <strong>efficaces, accessibles et adaptées aux besoins réels</strong>.
+    </p>
+    <p>
+        J’accompagne <strong>particuliers et professionnels</strong> en <span class="highlight">développement web</span> et <span class="highlight">maintenance informatique</span><span class="highlight"></span>, afin de rendre le numérique plus fiable et plus sûr.
+    </p>
+</div>
+
+        <div class="section">
+            <div class="section-title">💼 Ce que je fais</div>
+            <ul>
+                <li><span class="highlight">Développement web</span> - Création de sites vitrines modernes et performants</li>
+                <li><span class="highlight">Diag/"audit"</span> - Diagnostic et résolution de problèmes informatiques</li>
+                <li><span class="highlight">Maintenance</span> - Support technique et accompagnement continu</li>
+
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎓 Formation & Compétences</div>
+            <p>
+            </p>
+            <ul>
+                <li>Développement web moderne (HTML, CSS, JS, Golang, C, Bash...)</li>
+                <li>Principes de cybersécurité offensive et défensive</li>
+                <li>Tests d'intrusion et analyse de vulnérabilités</li>
+                <li>Configuration et sécurisation de systèmes</li>
+                <li>Participation active à des challenges Hackathon/CTF</li>
+                <li>Veille technologique permanente sur les menaces émergentes</li>
+            </ul>
+        </div>
+
+       
+        <div class="section">
+            <div class="section-title">✨ Mes valeurs</div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h4>🎯 Professionnalisme</h4>
+                    <p>Rigueur et qualité dans chaque intervention</p>
+                </div>
+                <div class="value-card">
+                    <h4>🤝 Transparence</h4>
+                    <p>Communication claire et honnête</p>
+                </div>
+                <div class="value-card">
+                    <h4>🔒 Confidentialité</h4>
+                    <p>Respect absolu de vos données</p>
+                </div>
+                <div class="value-card">
+                    <h4>📚 Apprentissage</h4>
+                    <p>Formation continue</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            La cybersécurité n'est pas qu'une question technique, c'est avant tout une question de sensibilisation et de bonnes pratiques accessibles à tous.
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎯 Ma mission</div>
+            <p>
+                Rendre la <span class="highlight">cybersécurité accessible</span> à tous, tout en proposant des <span class="highlight">solutions web professionnelles</span> et un <span class="highlight">support informatique de qualité</span>.
+            </p>
+            <p>
+                Je crois fermement que la meilleure protection commence par la compréhension des enjeux et l'adoption de bonnes pratiques simples mais efficaces.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – À votre service pour un numérique plus sûr</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

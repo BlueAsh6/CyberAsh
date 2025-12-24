@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets Annexes - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .project-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #00ff88;
+            font-size: 2.2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .intro {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        .project {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ccff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 35px;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .project-icon-small {
+            font-size: 2.5rem;
+        }
+
+        .project-title {
+            color: #00ff88;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .project-subtitle {
+            color: #00ccff;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        p {
+            color: #d0d0d0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 10px 0 10px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 5px 15px;
+            color: #00ccff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .section-divider {
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.5), transparent);
+            margin: 40px auto;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #b0b0b0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="project-icon">📚</div>
+            <div class="logo">Projets Annexes</div>
+            <div class="subtitle">Portfolio Technique & Créatif</div>
+        </div>
+
+        <h1>📚 Autres Projets</h1>
+
+        <div class="intro">
+            Une sélection de projets personnels et académiques qui illustrent mes compétences en <strong style="color: #00ff88;">développement</strong>, <strong style="color: #00ccff;">algorithmes</strong> et <strong style="color: #00ff88;">créativité technique</strong>.
+        </div>
+
+        <!-- PUISSANCE 4 WEB -->
+        <div class="project">
+            <div class="project-header">
+                <div class="project-icon-small">🎮</div>
+                <div>
+                    <div class="project-title">Puissance 4 Web</div>
+                    <div class="project-subtitle">Jeu interactif en ligne</div>
+                </div>
+            </div>
+            
+            <p>
+                Développement d'une version web complète du jeu <span class="highlight">Puissance 4</span> avec interface graphique moderne et logique de jeu optimisée.
+            </p>
+            
+            <p><strong style="color: #00ccff;">Fonctionnalités :</strong></p>
+            <ul>
+                <li>Interface responsive et intuitive</li>
+                <li>Détection automatique des victoires (horizontal, vertical, diagonal)</li>
+                <li>Animations fluides pour les jetons</li>
+                <li>Mode 2 joueurs local avec choix des pseudos</li>
+                <li>Timer et animation des victoires</li>
+            </ul>
+
+            <div class="tech-tags">
+                <div class="tech-tag">HTML</div>
+                <div class="tech-tag">CSS</div>
+                <div class="tech-tag">JavaScript</div>
+                <div class="tech-tag">Golang</div>
+                <div class="tech-tag">Game Logic</div>
+            </div>
+
+            <p><strong style="color: #00ccff;">Compétences développées :</strong> Logique de programmation, gestion d'événements, manipulation DOM, conception d'interfaces ludiques</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- JEU DANS UN SHELL -->
+        <div class="project">
+            <div class="project-header">
+                <div class="project-icon-small">💻</div>
+                <div>
+                    <div class="project-title">Jeu dans un Shell</div>
+                    <div class="project-subtitle">Game en ligne de commande</div>
+                </div>
+            </div>
+            
+            <p>
+                Création d'un <span class="highlight">jeu interactif</span> entièrement jouable dans un terminal, avec une expérience utilisateur optimisée malgré les contraintes du format texte.
+            </p>
+            
+            <p><strong style="color: #00ccff;">Caractéristiques :</strong></p>
+            <ul>
+                <li>Interface ASCII art créative</li>
+                <li>Système de navigation par commandes</li>
+                <li>Gestion d'état et de progression (niveau; pv; dégat etc..)</li>
+                <li>Jeu type roguelike à une vie avec objectifs, lieux clés, quêtes, choix et perso customisable</li>
+                <li>Mécaniques de jeu originales adaptées au terminal</li>
+            </ul>
+
+            <div class="tech-tags">
+                <div class="tech-tag">Bash/Golang</div>
+                <div class="tech-tag">CLI</div>
+                <div class="tech-tag">ASCII Art</div>
+                <div class="tech-tag">State Management</div>
+            </div>
+
+            <p><strong style="color: #00ccff;">Compétences développées :</strong> Programmation système, gestion des entrées/sorties, structures de données, créativité sous contraintes</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- GROUPIE TRACKER -->
+        <div class="project">
+            <div class="project-header">
+                <div class="project-icon-small">🎵</div>
+                <div>
+                    <div class="project-title">GroupieTracker</div>
+                    <div class="project-subtitle">Application web de suivi d'artistes musicaux</div>
+                </div>
+            </div>
+            
+            <p>
+                Application web permettant de <span class="highlight">rechercher et suivre des informations</span> sur des artistes musicaux, leurs concerts, et leurs localisations via des APIs externes.
+            </p>
+            
+            <p><strong style="color: #00ccff;">Fonctionnalités principales :</strong></p>
+            <ul>
+                <li>Recherche d'artistes et groupes musicaux</li>
+                <li>Affichage des dates et lieux de concerts</li>
+                <li>Intégration de cartes interactives (géolocalisation)</li>
+                <li>Système de barre de recherche intelligente</li>
+                <li>Interface moderne et responsive</li>
+            </ul>
+
+            <div class="tech-tags">
+                <div class="tech-tag">Go / Backend</div>
+                <div class="tech-tag">REST API</div>
+                <div class="tech-tag">HTML/CSS/JS</div>
+                <div class="tech-tag">JSON</div>
+                <div class="tech-tag">Maps API</div>
+            </div>
+
+            <p><strong style="color: #00ccff;">Compétences développées :</strong> Architecture client-serveur, consommation d'APIs, parsing de données, templating, gestion de requêtes HTTP</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="intro" style="margin-top: 40px;">
+           Chaque projet me permet d’explorer de nouvelles technologies et d’améliorer concrètement<strong style="color: #00ff88;"> mes compétences techniques</strong>, ainsi que ma capacité  <strong style="color: #00ccff;">à les mettre en applications rapidement.</strong>
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Développement & Innovation</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>

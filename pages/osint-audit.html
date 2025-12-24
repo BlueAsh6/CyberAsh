@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Audit - CyberSlash Solutions</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document::before {
+            content: '👁️';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 8rem;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: #00ff88;
+            font-size: 2.2rem;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 204, 255, 0.1));
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro strong {
+            color: #00ff88;
+            font-size: 1.2rem;
+        }
+
+        .cyber-warning {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1rem;
+            color: #00ccff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cyber-warning::before {
+            content: '🔒';
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .formule {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 4px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .formule:hover {
+            transform: translateX(5px);
+            border-left-color: #00ccff;
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.3);
+        }
+
+        .formule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .formule-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #00ccff;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #b0b0b0;
+            font-weight: normal;
+        }
+
+        .description {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #00ff88;
+        }
+
+        .section-title {
+            color: #00ccff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, #00ff88, #00ccff);
+            border-radius: 2px;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            padding: 10px 0 10px 35px;
+            color: #d0d0d0;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 255, 0.05));
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .use-case {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 204, 255, 0.3);
+        }
+
+        .use-case-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .use-case-title {
+            color: #00ccff;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b0b0b0;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-icon {
+            font-size: 1.3rem;
+        }
+
+        .ethics-box {
+            background: rgba(255, 204, 0, 0.1);
+            border: 2px solid rgba(255, 204, 0, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ethics-box::before {
+            content: '⚖️';
+            font-size: 2.5rem;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0a0a0a;
+            padding: 0 15px;
+        }
+
+        .ethics-title {
+            color: #ffcc00;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 15px 0 20px 0;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #b0b0b0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .document {
+                box-shadow: none;
+                border: none;
+            }
+            
+            .formule {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div class="logo">🛡️ CyberSlash Solutions</div>
+            <div class="subtitle">Cybersécurité & Investigations Numériques</div>
+        </div>
+
+        <h1>👁️ OSINT & Empreinte Numérique</h1>
+
+        <div class="intro">
+            <strong>Découvrez votre trace numérique avant qu'elle ne vous échappe.</strong><br><br>
+            L'OSINT (Open Source Intelligence) permet d'analyser les informations publiques disponibles en ligne. 
+            Que savez-vous vraiment de votre présence digitale ? Je vous aide à comprendre votre empreinte numérique, 
+            identifier les risques et reprendre le contrôle de vos données personnelles.
+        </div>
+
+        <div class="cyber-warning">
+            <strong>100% Légal & Éthique</strong><br>
+            Toutes les investigations utilisent uniquement des sources publiques et respectent la vie privée. (sauf sur demande avec accord et contrat)
+        </div>
+
+        <div class="section-title">🎯 Cas d'usage typiques :</div>
+        <div class="use-cases">
+            <div class="use-case">
+                <span class="use-case-icon">🔍</span>
+                <div class="use-case-title">Vérification Personnelle</div>
+            </div>
+            <div class="use-case">
+                <span class="use-case-icon">💼</span>
+                <div class="use-case-title">Audit Professionnel</div>
+            </div>
+            <div class="use-case">
+                <span class="use-case-icon">🛡️</span>
+                <div class="use-case-title">Protection Vie Privée</div>
+            </div>
+            <div class="use-case">
+                <span class="use-case-icon">📸</span>
+                <div class="use-case-title">Analyse Métadonnées</div>
+            </div>
+        </div>
+
+        <!-- FORMULE 1 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🟢 EXPRESS</span>
+                    <span>Audit Présence en Ligne</span>
+                </div>
+                <div class="price">20€ <span class="price-unit">forfait</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Idéal pour</strong> découvrir rapidement ce qu'on trouve sur vous en ligne.
+            </div>
+
+            <div class="section-title">📦 Ce que comprend la prestation :</div>
+            <ul>
+                <li>Recherche sur les principaux moteurs (Google, Bing, DuckDuckGo)</li>
+                <li>Vérification réseaux sociaux publics (Facebook, LinkedIn, Instagram, X...)</li>
+                <li>Détection de fuites de données connues (emails, téléphones)</li>
+                <li>Rapport simplifié des découvertes (1-3 pages)</li>
+                <li>Conseils de base pour limiter votre exposition</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Délai :</strong> 24 à 48 heures
+            </div>
+        </div>
+
+        <!-- FORMULE 2 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🔵 COMPLET</span>
+                    <span>Analyse Métadonnées & Deep Search</span>
+                </div>
+                <div class="price">80€ <span class="price-unit">forfait</span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Recommandé pour</strong> une analyse approfondie et extraction des métadonnées
+(informations issues de photos ou de fichiers, non visibles par un utilisateur standard).
+            </div>
+
+            <div class="section-title">📦 Ce que comprend la prestation :</div>
+            <ul>
+                <li><strong>Tout ce qui est inclus dans l'Audit Express</strong></li>
+                <li>Analyse de métadonnées (documents, photos, fichiers fournis)</li>
+                <li>Recherche sur bases de données spécialisées</li>
+                <li>Vérification de comptes oubliés et anciens profils</li>
+                <li>Analyse de la réputation en ligne (avis, commentaires)</li>
+                <li>Cartographie complète de votre présence digitale</li>
+                <li>Rapport détaillé avec preuves (captures d'écran)</li>
+                <li>Plan d'action personnalisé pour nettoyer votre trace</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Délai :</strong> 3 à 5 jours ouvrés
+            </div>
+        </div>
+
+        <!-- FORMULE 3 -->
+        <div class="formule">
+            <div class="formule-header">
+                <div class="formule-title">
+                    <span class="badge">🟣 PREMIUM</span>
+                    <span>Investigation spécifique</span>
+                </div>
+                <div class="price"><span class="price-unit"> </span></div>
+            </div>
+
+            <div class="description">
+                👉 <strong>Pour autre demande</strong> nécessitant une investigation non mentionné ci dessus.
+            </div>
+
+            <div class="section-title">📦 Inclut :</div>
+            <ul>
+                <li>Tout ce qui est inclus dans l'Analyse Complète</li>
+                <li>Investigation multi-sources avancée (forums, dark web monitoring)</li>
+                <li>Analyse de la surface d'attaque personnelle</li>
+                <li>Vérification d'usurpation d'identité potentielle</li>
+                <li>Audit de sécurité des comptes en ligne</li>
+                <li>Rapport stratégique (10-15 pages) avec recommandations</li>
+                <li>Session de débriefing (1h en visio ou présentiel)</li>
+                <li>Veille mensuelle gratuite pendant 3 mois</li>
+            </ul>
+
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <strong>Délai :</strong> 5 à 7 jours ouvrés
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="section-title">✨ Options complémentaires :</div>
+            <ul>
+                <li>Vérification pré-embauche / recrutement (+80€)</li>
+                <li>Audit de concurrent / partenaire potentiel (+100€)</li>
+                <li>Formation sensibilisation OSINT (1h) (+50€)</li>
+                <li>Veille continue mensuelle (alertes automatiques) (30€/mois)</li>
+            </ul>
+        </div>
+
+        <div class="ethics-box">
+            <div class="ethics-title">Charte Éthique & Légalité</div>
+            <p style="color: #d0d0d0; text-align: center; line-height: 1.8;">
+                Toutes les investigations respectent strictement le cadre légal français (RGPD, CNIL).<br>
+                <strong>Aucune intrusion, aucun hacking, uniquement des sources publiques.</strong><br>
+                Les audits sont réalisés avec consentement explicite de la personne concernée.<br>
+                Confidentialité absolue garantie - Aucune donnée conservée après livraison.
+            </p>
+        </div>
+
+        <div class="cyber-warning">
+            <strong>💡 Pourquoi faire un audit OSINT ?</strong><br><br>
+            Recruteurs, arnaqueurs, concurrents... tout le monde peut rechercher des infos sur vous.<br>
+            Mieux vaut savoir ce qu'ils trouveront avant eux !
+        </div>
+
+        <div class="footer">
+            <p><strong>CyberSlash Solutions</strong> – Votre allié investigation numérique</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>ash-advisory@proton.me</span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>cyberslash.netlify.app</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 CyberSlash Solutions – Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>
